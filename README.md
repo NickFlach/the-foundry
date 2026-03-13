@@ -165,6 +165,34 @@ foundry agents log <id> \
   --target <targetId> \
   --details "Created a post"                 # Log an action
 
+# Kannaka Radio
+foundry radio stations                       # List radio stations
+foundry radio station <id>                   # Get station details
+foundry radio playlists                      # List playlists
+foundry radio playlist <id>                  # Get playlist with tracks
+foundry radio add-track \
+  --title "Ghost Signal" \
+  --artist "Kannaka" \
+  --duration 312 \
+  --tags "ambient,ghost"                     # Add a track
+foundry radio create-playlist "My Playlist" \
+  --desc "Description"                       # Create a playlist
+
+# The Forge (project incubation)
+foundry forge list                           # List projects
+foundry forge list --status active           # Filter by status
+foundry forge get <id>                       # Get project with milestones
+foundry forge create "My Project" \
+  --desc "Description" \
+  --repo "https://github.com/..." \
+  --tags "ai,music"                          # Create a project
+foundry forge update <id> --status shipped   # Update project status
+foundry forge milestone <projectId> \
+  --title "Beta" \
+  --desc "Beta release" \
+  --due "2026-04-01"                         # Add a milestone
+foundry forge add-contributor <projectId> <memberId>  # Add contributor
+
 # Members (identity & reputation)
 foundry members list                         # List all members
 foundry members list --pretty                # Human-readable table
