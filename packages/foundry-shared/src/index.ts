@@ -12,3 +12,4 @@ export * from "./community/index.js";
 export * from "./flux/index.js";
 export * from "./identity/index.js";
 export * from "./knowledge/index.js";
+export * from "./agents/index.js";

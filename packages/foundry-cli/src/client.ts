@@ -140,6 +140,41 @@ export class FoundryClient {
     return this.request(`/api/knowledge?q=${encodeURIComponent(query)}`);
   }
 
+  // Agents
+  async registerAgent(data: { name: string; framework: string; capabilities: string[]; owner: string; apiEndpoint?: string }): Promise<any> {
+    return this.request("/api/agents/register", { method: "POST", body: JSON.stringify(data) });
+  }
+
+  async listAgents(filters?: { status?: string; capability?: string; framework?: string }): Promise<any[]> {
+    const params = new URLSearchParams();
+    if (filters?.status) params.set("status", filters.status);
+    if (filters?.capability) params.set("capability", filters.capability);
+    if (filters?.framework) params.set("framework", filters.framework);
+    const qs = params.toString();
+    return this.request(`/api/agents${qs ? `?${qs}` : ""}`);
+  }
+
+  async getAgent(id: string): Promise<any> {
+    return this.request(`/api/agents/${encodeURIComponent(id)}`);
+  }
+
+  async updateAgentStatus(id: string, status: string): Promise<any> {
+    return this.request(`/api/agents/${encodeURIComponent(id)}/status`, { method: "PUT", body: JSON.stringify({ status }) });
+  }
+
+  async getAgentActions(id: string, limit?: number): Promise<any[]> {
+    const qs = limit ? `?limit=${limit}` : "";
+    return this.request(`/api/agents/${encodeURIComponent(id)}/actions${qs}`);
+  }
+
+  async logAgentAction(id: string, data: { actionType: string; targetId: string; details?: string }): Promise<any> {
+    return this.request(`/api/agents/${encodeURIComponent(id)}/actions`, { method: "POST", body: JSON.stringify(data) });
+  }
+
+  async getAgentPermissions(id: string): Promise<any> {
+    return this.request(`/api/agents/${encodeURIComponent(id)}/permissions`);
+  }
+
   // Wasteland
   async getWanted(filters?: { project?: string; status?: string }): Promise<any> {
     const params = new URLSearchParams();

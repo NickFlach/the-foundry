@@ -7,6 +7,7 @@ import { communityRouter } from "./community-routes.js";
 import { identityRouter } from "./identity-routes.js";
 import { fluxRouter } from "./flux-routes.js";
 import { knowledgeRouter } from "./knowledge-routes.js";
+import { agentRouter } from "./agent-routes.js";
 
 const app = express();
 
@@ -29,6 +30,9 @@ app.use("/api/knowledge", knowledgeRouter);
 
 // Flux world state API
 app.use("/api/flux", fluxRouter);
+
+// Agent participation API
+app.use("/api/agents", agentRouter);
 
 // Lazy-init to avoid requiring DoltHubClient at import time (helps testing)
 app.use("/api/wasteland", (req, res, next) => {
