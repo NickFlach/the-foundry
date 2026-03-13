@@ -12,3 +12,5 @@ export const DEFAULT_DB_CONFIG: DbConfig = {
   port: 3306,
   database: "the_foundry",
 };
+
+export * from "./stores/community-store.js";

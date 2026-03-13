@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@the-foundry/shared": "*",
+    "@the-foundry/db": "*",
+    "cors": "^2.8.5",
     "express": "^5.0.0"
   },
   "devDependencies": {

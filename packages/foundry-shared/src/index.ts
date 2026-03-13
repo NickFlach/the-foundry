@@ -8,3 +8,4 @@ export interface HealthResponse {
 }
 
 export * from "./wasteland/index.js";
+export * from "./community/index.js";
