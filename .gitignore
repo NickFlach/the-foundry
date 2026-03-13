@@ -7,3 +7,17 @@ dist/
 build/
 .DS_Store
 Thumbs.db
+.next/
+*.tsbuildinfo
+# TypeScript build output
+*.tsbuildinfo
+*.d.ts.map
+*.d.mts.map
+*.js.map
+*.mjs.map
+packages/**/dist/
+
+# Root compiled config files
+vitest.config.js
+vitest.config.mjs
+vitest.config.d.*

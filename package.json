@@ -1,0 +1,28 @@
+{
+  "name": "the-foundry",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev -w packages/foundry-api",
+    "dev:web": "npm run dev -w packages/foundry-web",
+    "build": "npm run build -w packages/foundry-shared && npm run build -w packages/foundry-db && npm run build -w packages/foundry-api && npm run build -w packages/foundry-web",
+    "typecheck": "tsc -b && tsc --noEmit -p packages/foundry-web/tsconfig.json",
+    "test": "vitest run",
+    "lint": "eslint 'packages/*/src/**/*.{ts,tsx}'",
+    "format": "prettier --write 'packages/*/src/**/*.{ts,tsx,json}'"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0",
+    "eslint": "^9.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.0.0",
+    "@typescript-eslint/parser": "^8.0.0",
+    "prettier": "^3.4.0",
+    "supertest": "^7.0.0",
+    "@types/supertest": "^6.0.0"
+  }
+}
