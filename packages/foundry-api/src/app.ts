@@ -4,6 +4,8 @@ import { APP_NAME } from "@the-foundry/shared";
 import type { HealthResponse } from "@the-foundry/shared";
 import { createWastelandRouter } from "./wasteland-routes.js";
 import { communityRouter } from "./community-routes.js";
+import { identityRouter } from "./identity-routes.js";
+import { fluxRouter } from "./flux-routes.js";
 
 const app = express();
 
@@ -17,6 +19,12 @@ app.get("/health", (_req, res) => {
 
 // Community spaces API
 app.use("/api", communityRouter);
+
+// Identity & members API
+app.use("/api", identityRouter);
+
+// Flux world state API
+app.use("/api/flux", fluxRouter);
 
 // Lazy-init to avoid requiring DoltHubClient at import time (helps testing)
 app.use("/api/wasteland", (req, res, next) => {

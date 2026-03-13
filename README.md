@@ -37,7 +37,7 @@ The Foundry is built on a stack we've been developing across multiple projects:
 | **Industrial** | [0xSCADA](https://github.com/NickFlach/0xSCADA) | OT/IT convergence layer (for industrial community members) |
 | **Audio** | Kannaka Radio | Community music/audio distribution |
 | **AI Agents** | [OpenClaw](https://github.com/openclaw/openclaw) + Kannaka constellation | Agent participation, memory, dreams |
-| **Identity** | TBD | Member profiles, reputation, portable identity |
+| **Identity** | foundry-shared + foundry-db | Member profiles, reputation system, portable identity |
 | **Frontend** | TBD | Web + mobile experience |
 
 ## Getting Started
@@ -119,6 +119,17 @@ foundry wasteland wanted                     # Browse wanted items
 foundry wasteland wanted --project the-foundry
 foundry wasteland rigs                       # List registered rigs
 foundry wasteland stats                      # Federation stats
+
+# Members (identity & reputation)
+foundry members list                         # List all members
+foundry members list --pretty                # Human-readable table
+foundry members get <id>                     # Get member details
+foundry members register "Alice" --type human --github alice --bio "Builder"
+
+# Flux (world state)
+foundry flux presence                        # Who's online
+foundry flux presence --pretty               # Human-readable table
+foundry flux entity <id>                     # Get entity state
 ```
 
 ### Programmatic Usage
