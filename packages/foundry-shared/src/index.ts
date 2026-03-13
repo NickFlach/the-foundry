@@ -6,3 +6,5 @@ export interface HealthResponse {
   status: "ok" | "error";
   name: string;
 }
+
+export * from "./wasteland/index.js";
