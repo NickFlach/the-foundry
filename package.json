@@ -8,7 +8,8 @@
   "scripts": {
     "dev:api": "npm run dev -w packages/foundry-api",
     "dev:web": "npm run dev -w packages/foundry-web",
-    "build": "npm run build -w packages/foundry-shared && npm run build -w packages/foundry-db && npm run build -w packages/foundry-api && npm run build -w packages/foundry-web",
+    "build": "npm run build -w packages/foundry-shared && npm run build -w packages/foundry-db && npm run build -w packages/foundry-cli && npm run build -w packages/foundry-api && npm run build -w packages/foundry-web",
+    "dev:cli": "npm run dev -w packages/foundry-cli",
     "typecheck": "tsc -b && tsc --noEmit -p packages/foundry-web/tsconfig.json",
     "test": "vitest run",
     "lint": "eslint 'packages/*/src/**/*.{ts,tsx}'",

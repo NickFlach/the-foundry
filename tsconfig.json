@@ -16,6 +16,7 @@
   "references": [
     { "path": "packages/foundry-shared" },
     { "path": "packages/foundry-db" },
+    { "path": "packages/foundry-cli" },
     { "path": "packages/foundry-api" }
   ]
 }

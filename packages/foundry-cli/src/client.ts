@@ -1,0 +1,91 @@
+export interface FoundryClientOptions {
+  baseUrl?: string;
+}
+
+export class FoundryClient {
+  private baseUrl: string;
+
+  constructor(options?: FoundryClientOptions) {
+    this.baseUrl = (options?.baseUrl ?? process.env.FOUNDRY_API_URL ?? "http://localhost:3000").replace(/\/$/, "");
+  }
+
+  private async request<T>(path: string, init?: RequestInit): Promise<T> {
+    const url = `${this.baseUrl}${path}`;
+    let res: Response;
+    try {
+      res = await fetch(url, {
+        ...init,
+        headers: { "Content-Type": "application/json", ...init?.headers },
+      });
+    } catch (err) {
+      throw new Error(`Failed to connect to Foundry API at ${this.baseUrl}. Is the server running?`);
+    }
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({}));
+      throw new Error((body as any).error ?? `HTTP ${res.status} ${res.statusText}`);
+    }
+    return res.json() as Promise<T>;
+  }
+
+  // Health
+  async health(): Promise<any> {
+    return this.request("/api/health");
+  }
+
+  // Spaces
+  async listSpaces(): Promise<any[]> {
+    return this.request("/api/spaces");
+  }
+
+  async getSpace(id: string): Promise<any> {
+    return this.request(`/api/spaces/${encodeURIComponent(id)}`);
+  }
+
+  async createSpace(data: { name: string; type: string; description?: string }): Promise<any> {
+    return this.request("/api/spaces", {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+  }
+
+  // Posts
+  async listPosts(spaceId: string, options?: { limit?: number; offset?: number }): Promise<any[]> {
+    const params = new URLSearchParams();
+    if (options?.limit) params.set("limit", String(options.limit));
+    if (options?.offset) params.set("offset", String(options.offset));
+    const qs = params.toString();
+    return this.request(`/api/spaces/${encodeURIComponent(spaceId)}/posts${qs ? `?${qs}` : ""}`);
+  }
+
+  async createPost(spaceId: string, data: { title: string; content: string; authorId?: string; authorType?: string }): Promise<any> {
+    return this.request(`/api/spaces/${encodeURIComponent(spaceId)}/posts`, {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+  }
+
+  // Replies
+  async createReply(postId: string, data: { content: string; authorId?: string; authorType?: string }): Promise<any> {
+    return this.request(`/api/posts/${encodeURIComponent(postId)}/replies`, {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+  }
+
+  // Wasteland
+  async getWanted(filters?: { project?: string; status?: string }): Promise<any> {
+    const params = new URLSearchParams();
+    if (filters?.project) params.set("project", filters.project);
+    if (filters?.status) params.set("status", filters.status);
+    const qs = params.toString();
+    return this.request(`/api/wasteland/wanted${qs ? `?${qs}` : ""}`);
+  }
+
+  async getRigs(): Promise<any> {
+    return this.request("/api/wasteland/rigs");
+  }
+
+  async getStats(): Promise<any> {
+    return this.request("/api/wasteland/stats");
+  }
+}
