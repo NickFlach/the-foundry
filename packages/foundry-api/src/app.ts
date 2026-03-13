@@ -6,6 +6,7 @@ import { createWastelandRouter } from "./wasteland-routes.js";
 import { communityRouter } from "./community-routes.js";
 import { identityRouter } from "./identity-routes.js";
 import { fluxRouter } from "./flux-routes.js";
+import { knowledgeRouter } from "./knowledge-routes.js";
 
 const app = express();
 
@@ -22,6 +23,9 @@ app.use("/api", communityRouter);
 
 // Identity & members API
 app.use("/api", identityRouter);
+
+// Knowledge commons API
+app.use("/api/knowledge", knowledgeRouter);
 
 // Flux world state API
 app.use("/api/flux", fluxRouter);

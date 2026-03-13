@@ -15,3 +15,4 @@ export const DEFAULT_DB_CONFIG: DbConfig = {
 
 export * from "./stores/community-store.js";
 export * from "./stores/member-store.js";
+export * from "./stores/knowledge-store.js";

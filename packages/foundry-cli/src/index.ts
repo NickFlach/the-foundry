@@ -6,6 +6,7 @@ import { registerPostsCommands } from "./commands/posts.js";
 import { registerWastelandCommands } from "./commands/wasteland.js";
 import { registerMembersCommands } from "./commands/members.js";
 import { registerFluxCommands } from "./commands/flux.js";
+import { registerKnowledgeCommands } from "./commands/knowledge.js";
 
 const program = new Command();
 
@@ -20,6 +21,7 @@ registerPostsCommands(program);
 registerWastelandCommands(program);
 registerMembersCommands(program);
 registerFluxCommands(program);
+registerKnowledgeCommands(program);
 
 program.parseAsync(process.argv).catch((err) => {
   process.stderr.write(`Error: ${err.message}\n`);

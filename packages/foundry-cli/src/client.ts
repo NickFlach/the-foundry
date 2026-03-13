@@ -104,6 +104,42 @@ export class FoundryClient {
     return this.request(`/api/flux/entity/${encodeURIComponent(id)}`);
   }
 
+  // Knowledge
+  async listArticles(filters?: { category?: string; tag?: string; author?: string }): Promise<any[]> {
+    const params = new URLSearchParams();
+    if (filters?.category) params.set("category", filters.category);
+    if (filters?.tag) params.set("tag", filters.tag);
+    if (filters?.author) params.set("author", filters.author);
+    const qs = params.toString();
+    return this.request(`/api/knowledge${qs ? `?${qs}` : ""}`);
+  }
+
+  async getArticle(idOrSlug: string): Promise<any> {
+    return this.request(`/api/knowledge/${encodeURIComponent(idOrSlug)}`);
+  }
+
+  async createArticle(data: { title: string; content: string; category: string; tags?: string[]; authorId?: string; authorType?: string }): Promise<any> {
+    return this.request("/api/knowledge", {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+  }
+
+  async updateArticle(id: string, data: { content: string; changeSummary?: string; authorId?: string }): Promise<any> {
+    return this.request(`/api/knowledge/${encodeURIComponent(id)}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+    });
+  }
+
+  async getRevisions(articleId: string): Promise<any[]> {
+    return this.request(`/api/knowledge/${encodeURIComponent(articleId)}/revisions`);
+  }
+
+  async searchArticles(query: string): Promise<any[]> {
+    return this.request(`/api/knowledge?q=${encodeURIComponent(query)}`);
+  }
+
   // Wasteland
   async getWanted(filters?: { project?: string; status?: string }): Promise<any> {
     const params = new URLSearchParams();
