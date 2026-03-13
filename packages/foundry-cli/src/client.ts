@@ -72,6 +72,38 @@ export class FoundryClient {
     });
   }
 
+  // Members
+  async listMembers(): Promise<any[]> {
+    return this.request("/api/members");
+  }
+
+  async getMember(id: string): Promise<any> {
+    return this.request(`/api/members/${encodeURIComponent(id)}`);
+  }
+
+  async createMember(data: { name: string; type: string; githubUsername?: string; bio?: string }): Promise<any> {
+    return this.request("/api/members", {
+      method: "POST",
+      body: JSON.stringify(data),
+    });
+  }
+
+  async updateMember(id: string, data: { name?: string; githubUsername?: string; bio?: string }): Promise<any> {
+    return this.request(`/api/members/${encodeURIComponent(id)}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+    });
+  }
+
+  // Flux
+  async getPresence(): Promise<any[]> {
+    return this.request("/api/flux/presence");
+  }
+
+  async getFluxEntity(id: string): Promise<any> {
+    return this.request(`/api/flux/entity/${encodeURIComponent(id)}`);
+  }
+
   // Wasteland
   async getWanted(filters?: { project?: string; status?: string }): Promise<any> {
     const params = new URLSearchParams();

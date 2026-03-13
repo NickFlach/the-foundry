@@ -9,3 +9,5 @@ export interface HealthResponse {
 
 export * from "./wasteland/index.js";
 export * from "./community/index.js";
+export * from "./flux/index.js";
+export * from "./identity/index.js";
