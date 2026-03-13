@@ -8,6 +8,8 @@ import { registerMembersCommands } from "./commands/members.js";
 import { registerFluxCommands } from "./commands/flux.js";
 import { registerKnowledgeCommands } from "./commands/knowledge.js";
 import { registerAgentsCommands } from "./commands/agents.js";
+import { registerRadioCommands } from "./commands/radio.js";
+import { registerForgeCommands } from "./commands/forge.js";
 
 const program = new Command();
 
@@ -24,6 +26,8 @@ registerMembersCommands(program);
 registerFluxCommands(program);
 registerKnowledgeCommands(program);
 registerAgentsCommands(program);
+registerRadioCommands(program);
+registerForgeCommands(program);
 
 program.parseAsync(process.argv).catch((err) => {
   process.stderr.write(`Error: ${err.message}\n`);

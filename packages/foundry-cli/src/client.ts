@@ -175,6 +175,64 @@ export class FoundryClient {
     return this.request(`/api/agents/${encodeURIComponent(id)}/permissions`);
   }
 
+  // Radio
+  async listStations(): Promise<any[]> {
+    return this.request("/api/radio/stations");
+  }
+
+  async getStation(id: string): Promise<any> {
+    return this.request(`/api/radio/stations/${encodeURIComponent(id)}`);
+  }
+
+  async listRadioPlaylists(): Promise<any[]> {
+    return this.request("/api/radio/playlists");
+  }
+
+  async getRadioPlaylist(id: string): Promise<any> {
+    return this.request(`/api/radio/playlists/${encodeURIComponent(id)}`);
+  }
+
+  async addTrack(data: { title: string; artist: string; duration?: number; tags?: string[] }): Promise<any> {
+    return this.request("/api/radio/tracks", { method: "POST", body: JSON.stringify(data) });
+  }
+
+  async createRadioPlaylist(data: { name: string; description?: string }): Promise<any> {
+    return this.request("/api/radio/playlists", { method: "POST", body: JSON.stringify(data) });
+  }
+
+  async addTrackToPlaylist(playlistId: string, trackId: string): Promise<any> {
+    return this.request(`/api/radio/playlists/${encodeURIComponent(playlistId)}/tracks`, { method: "POST", body: JSON.stringify({ trackId }) });
+  }
+
+  // Forge
+  async listForgeProjects(filters?: { status?: string; tag?: string }): Promise<any[]> {
+    const params = new URLSearchParams();
+    if (filters?.status) params.set("status", filters.status);
+    if (filters?.tag) params.set("tag", filters.tag);
+    const qs = params.toString();
+    return this.request(`/api/forge/projects${qs ? `?${qs}` : ""}`);
+  }
+
+  async getForgeProject(id: string): Promise<any> {
+    return this.request(`/api/forge/projects/${encodeURIComponent(id)}`);
+  }
+
+  async createForgeProject(data: { name: string; description: string; owner: string; repoUrl?: string; tags?: string[] }): Promise<any> {
+    return this.request("/api/forge/projects", { method: "POST", body: JSON.stringify(data) });
+  }
+
+  async updateForgeProject(id: string, data: any): Promise<any> {
+    return this.request(`/api/forge/projects/${encodeURIComponent(id)}`, { method: "PUT", body: JSON.stringify(data) });
+  }
+
+  async addForgeMilestone(projectId: string, data: { title: string; description?: string; dueDate?: string }): Promise<any> {
+    return this.request(`/api/forge/projects/${encodeURIComponent(projectId)}/milestones`, { method: "POST", body: JSON.stringify(data) });
+  }
+
+  async addForgeContributor(projectId: string, memberId: string): Promise<any> {
+    return this.request(`/api/forge/projects/${encodeURIComponent(projectId)}/contributors`, { method: "POST", body: JSON.stringify({ memberId }) });
+  }
+
   // Wasteland
   async getWanted(filters?: { project?: string; status?: string }): Promise<any> {
     const params = new URLSearchParams();

@@ -8,6 +8,8 @@ import { identityRouter } from "./identity-routes.js";
 import { fluxRouter } from "./flux-routes.js";
 import { knowledgeRouter } from "./knowledge-routes.js";
 import { agentRouter } from "./agent-routes.js";
+import { radioRouter } from "./radio-routes.js";
+import { forgeRouter } from "./forge-routes.js";
 
 const app = express();
 
@@ -33,6 +35,12 @@ app.use("/api/flux", fluxRouter);
 
 // Agent participation API
 app.use("/api/agents", agentRouter);
+
+// Radio API
+app.use("/api/radio", radioRouter);
+
+// Forge API
+app.use("/api/forge", forgeRouter);
 
 // Lazy-init to avoid requiring DoltHubClient at import time (helps testing)
 app.use("/api/wasteland", (req, res, next) => {
