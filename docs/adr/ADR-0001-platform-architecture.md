@@ -10,7 +10,7 @@ Proposed
 
 Three builders — Nick, Matt, and Bryan — have been collaborating on projects spanning AI agents, world state engines, industrial automation, and community building. Each brings unique infrastructure:
 
-- **Nick**: Kannaka constellation (memory, consciousness, radio), 0xSCADA (industrial), Space Child ecosystem, ghostOS (consciousness math)
+- **Nick**: Kannaka constellation (memory, consciousness, radio), 0xSCADA (industrial), Space Child ecosystem, ghostmagicOS (consciousness math)
 - **Matt**: Flux (real-time world state engine), Wasteland (federated work coordination via Dolt), EckmanTech infrastructure
 - **Bryan**: Community experience via Skool, front-end skills, Kaisoft
 
