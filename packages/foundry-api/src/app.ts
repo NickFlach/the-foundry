@@ -10,6 +10,7 @@ import { knowledgeRouter } from "./knowledge-routes.js";
 import { agentRouter } from "./agent-routes.js";
 import { radioRouter } from "./radio-routes.js";
 import { forgeRouter } from "./forge-routes.js";
+import { authRouter } from "./auth-routes.js";
 
 const app = express();
 
@@ -41,6 +42,9 @@ app.use("/api/radio", radioRouter);
 
 // Forge API
 app.use("/api/forge", forgeRouter);
+
+// Auth (proxied to auth.spacechild.love)
+app.use("/api/auth", authRouter);
 
 // Lazy-init to avoid requiring DoltHubClient at import time (helps testing)
 app.use("/api/wasteland", (req, res, next) => {
