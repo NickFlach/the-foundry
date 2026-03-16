@@ -8,6 +8,7 @@
     "build": "tsc -b"
   },
   "dependencies": {
-    "@the-foundry/shared": "*"
+    "@the-foundry/shared": "*",
+    "mysql2": "^3.20.0"
   }
 }

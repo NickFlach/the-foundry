@@ -1,10 +1,24 @@
-import { describe, it, expect, beforeEach } from "vitest";
+import { describe, it, expect, beforeEach, beforeAll, afterAll } from "vitest";
 import request from "supertest";
 import { app } from "./app.js";
-import { resetStore } from "@the-foundry/db";
+import { resetStore, initDb, closeDb, runMigrations } from "@the-foundry/db";
 
-beforeEach(() => {
-  resetStore();
+beforeAll(async () => {
+  await initDb({
+    host: "127.0.0.1",
+    port: 3307,
+    database: "the_foundry",
+    user: "root",
+  });
+  await runMigrations();
+});
+
+afterAll(async () => {
+  await closeDb();
+});
+
+beforeEach(async () => {
+  await resetStore();
 });
 
 describe("community routes", () => {
