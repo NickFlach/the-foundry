@@ -160,7 +160,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       mountedRef.current = false;
       if (refreshTimeoutRef.current) clearTimeout(refreshTimeoutRef.current);
     };
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, []); // intentionally empty — init runs once on mount
 
   const fetchUserWithToken = async (token: string) => {
     try {
