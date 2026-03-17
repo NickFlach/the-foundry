@@ -18,7 +18,7 @@ router.post("/register", async (req, res) => {
     if (!email || !password) return res.status(400).json({ error: "email and password required" });
     const result = await register(email, password, firstName, lastName);
     res.status(result.success ? 201 : 400).json(result);
-  } catch (error) {
+  } catch (_error) {
     res.status(502).json({ error: "Auth service unavailable" });
   }
 });
@@ -30,7 +30,7 @@ router.post("/login", async (req, res) => {
     if (!email || !password) return res.status(400).json({ error: "email and password required" });
     const result = await login(email, password);
     res.status(result.success ? 200 : 401).json(result);
-  } catch (error) {
+  } catch (_error) {
     res.status(502).json({ error: "Auth service unavailable" });
   }
 });
@@ -42,7 +42,7 @@ router.post("/refresh", async (req, res) => {
     if (!token) return res.status(400).json({ error: "refreshToken required" });
     const result = await refreshToken(token);
     res.status(result.success ? 200 : 401).json(result);
-  } catch (error) {
+  } catch (_error) {
     res.status(502).json({ error: "Auth service unavailable" });
   }
 });
@@ -57,7 +57,7 @@ router.get("/health", async (_req, res) => {
   try {
     const health = await authHealth();
     res.json(health);
-  } catch (error) {
+  } catch (_error) {
     res.status(502).json({ error: "Auth service unavailable" });
   }
 });

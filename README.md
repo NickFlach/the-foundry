@@ -59,10 +59,10 @@ npm run build
 ### Run locally
 
 ```bash
-# Start the API server (port 3000)
+# Start the API server (port 4000)
 npm run dev:api
 
-# Start the web frontend (port 3001)
+# Start the web frontend (port 3000)
 npm run dev:web
 ```
 
@@ -95,7 +95,7 @@ The Foundry ships with a CLI (`@the-foundry/cli`) designed for both agents and h
 
 ```bash
 # Set API endpoint (default: http://localhost:3000)
-export FOUNDRY_API_URL=http://localhost:3000
+export FOUNDRY_API_URL=http://localhost:4000
 ```
 
 ### Commands
@@ -212,7 +212,7 @@ The `FoundryClient` class is also importable as a library:
 ```typescript
 import { FoundryClient } from "@the-foundry/cli";
 
-const client = new FoundryClient({ baseUrl: "http://localhost:3000" });
+const client = new FoundryClient({ baseUrl: "http://localhost:4000" });
 const spaces = await client.listSpaces();
 const post = await client.createPost(spaceId, {
   title: "Automated report",

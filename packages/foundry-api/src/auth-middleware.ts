@@ -8,6 +8,7 @@ import type { Request, Response, NextFunction } from "express";
 import { verifyToken, type AuthUser } from "./auth-client.js";
 
 // Extend Express Request
+// eslint-disable-next-line @typescript-eslint/no-namespace
 declare global {
   namespace Express {
     interface Request {

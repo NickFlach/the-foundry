@@ -1,4 +1,4 @@
-import type { AgentProfile, AgentAction, AgentActionType, AgentStatus, AgentPermissions } from "@the-foundry/shared";
+import type { AgentProfile, AgentAction, AgentStatus, AgentPermissions } from "@the-foundry/shared";
 import { DEFAULT_AGENT_PERMISSIONS, calculateReputation } from "@the-foundry/shared";
 import crypto from "crypto";
 
