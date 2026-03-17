@@ -26,6 +26,8 @@ const inputStyle: React.CSSProperties = {
   borderRadius: "4px",
   background: "#2b1810",
   color: "#e0d0c0",
+  width: "100%",
+  boxSizing: "border-box",
 };
 
 const buttonStyle: React.CSSProperties = {
@@ -295,6 +297,17 @@ export default function RegisterPage() {
         <a href="/login" style={linkStyle}>
           Login Here
         </a>
+      </div>
+
+      <div style={{ 
+        textAlign: "center", 
+        marginTop: "1.5rem", 
+        paddingTop: "1rem", 
+        borderTop: "1px solid #3a2a1a",
+        fontSize: "0.75rem",
+        color: "#5a4a3a"
+      }}>
+        🔐 Powered by <span style={{ color: "#a89070" }}>SpaceChild Auth</span> with <span style={{ color: "#a89070" }}>Zero-Knowledge Proofs</span>
       </div>
     </div>
   );
